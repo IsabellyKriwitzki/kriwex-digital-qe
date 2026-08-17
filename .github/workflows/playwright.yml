@@ -28,12 +28,20 @@ jobs:
         working-directory: application/backend
         run: npm ci
 
+      - name: Install frontend dependencies
+        working-directory: application/frontend
+        run: npm ci
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - name: Start backend
         working-directory: application/backend
         run: npm run dev > backend.log 2>&1 &
+
+      - name: Start frontend
+        working-directory: application/frontend
+        run: npm run dev > frontend.log 2>&1 &
 
       - name: Wait for backend
         run: |
@@ -49,6 +57,22 @@ jobs:
 
           echo "Backend failed to start"
           cat application/backend/backend.log
+          exit 1
+
+      - name: Wait for frontend
+        run: |
+          for i in {1..30}; do
+            if curl --silent --fail http://localhost:3001/health > /dev/null; then
+              echo "Frontend is ready"
+              exit 0
+            fi
+
+            echo "Waiting for frontend..."
+            sleep 2
+          done
+
+          echo "Frontend failed to start"
+          cat application/frontend/frontend.log
           exit 1
 
       - name: Run Playwright tests
@@ -76,5 +100,13 @@ jobs:
         with:
           name: backend-log
           path: application/backend/backend.log
+          retention-days: 30
+
+      - name: Upload frontend log
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-log
+          path: application/frontend/frontend.log
           retention-days: 30
 
