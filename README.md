@@ -82,48 +82,61 @@ The goal is to demonstrate a complete QA automation ecosystem similar to real-wo
 
 ---
 
-# Project Structure
-kriwex-digital-qe
-
-├── application
-│ ├── backend
-│ │ ├── controllers
-│ │ ├── database
-│ │ ├── models
-│ │ ├── repositories
-│ │ ├── routes
-│ │ └── services
-│ │
-│ └── frontend
+# Project Architecture
+kriwex-digital-qe/
 │
-├── tests
-│ |
-│ ├── api
-│ │ ├── authentication
-│ │ ├── contracts
-│ │ └── security
-│ |
-│ ├── ui
-│ |
-│ ├── e2e
-│ |
-│ ├── database
-│ |
-│ ├── fixtures
-│ |
-│ └── pages
+├── application/
+│   ├── backend/
+│   │   └── src/
+│   │       ├── controllers/
+│   │       ├── database/
+│   │       ├── models/
+│   │       ├── repositories/
+│   │       ├── routes/
+│   │       ├── services/
+│   │       └── server.ts
+│   │
+│   └── frontend/
+│       ├── public/
+│       └── src/
 │
-├── utils
+├── tests/
+│   ├── api/
+│   │   ├── authentication/
+│   │   ├── clients/
+│   │   ├── contracts/
+│   │   └── security/
+│   │
+│   ├── ui/
+│   │   └── authentication/
+│   │
+│   ├── e2e/
+│   │   └── authentication/
+│   │
+│   ├── database/
+│   │   └── clients/
+│   │
+│   ├── fixtures/
+│   │
+│   └── pages/
+│
+├── data/
+│   └── authenticationData.ts
+│
+├── api/
+│   └── AuthApi.ts
+│
+├── utils/
+│   └── api/
+│       └── contractValidator.ts
 │
 ├── playwright.config.ts
+├── package.json
+├── package-lock.json
 │
-└── .github
-└── workflows
+└── .github/
+└── workflows/
 └── playwright.yml
-
-
----
-
 # Test Coverage
 
 Current automated coverage:
