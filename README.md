@@ -83,60 +83,64 @@ The goal is to demonstrate a complete QA automation ecosystem similar to real-wo
 ---
 
 # Project Architecture
+## Project Architecture
+
+```text
 kriwex-digital-qe/
 │
 ├── application/
 │   ├── backend/
 │   │   └── src/
-│   │       ├── controllers/
-│   │       ├── database/
-│   │       ├── models/
-│   │       ├── repositories/
-│   │       ├── routes/
-│   │       ├── services/
-│   │       └── server.ts
+│   │       ├── controllers/        # Request handling layer
+│   │       ├── database/           # Database connection and schema
+│   │       ├── models/             # Data models
+│   │       ├── repositories/       # Data access layer
+│   │       ├── routes/             # API routes
+│   │       ├── services/           # Business logic layer
+│   │       └── server.ts           # Backend entry point
 │   │
 │   └── frontend/
-│       ├── public/
-│       └── src/
+│       ├── public/                 # Static frontend assets
+│       └── src/                    # Frontend application source
 │
 ├── tests/
 │   ├── api/
-│   │   ├── authentication/
-│   │   ├── clients/
-│   │   ├── contracts/
-│   │   └── security/
+│   │   ├── authentication/         # Authentication API tests
+│   │   ├── clients/                # API client helpers
+│   │   ├── contracts/              # API contract validation
+│   │   └── security/               # Security testing scenarios
 │   │
 │   ├── ui/
-│   │   └── authentication/
+│   │   └── authentication/         # UI authentication tests
 │   │
 │   ├── e2e/
-│   │   └── authentication/
+│   │   └── authentication/         # End-to-end user flows
 │   │
 │   ├── database/
-│   │   └── clients/
+│   │   └── clients/                # Database validation helpers
 │   │
-│   ├── fixtures/
+│   ├── fixtures/                   # Test fixtures and reusable setup
 │   │
-│   └── pages/
+│   └── pages/                      # Page Object Model classes
 │
 ├── data/
-│   └── authenticationData.ts
+│   └── authenticationData.ts       # Test data management
 │
 ├── api/
-│   └── AuthApi.ts
+│   └── AuthApi.ts                  # API abstraction layer
 │
 ├── utils/
 │   └── api/
-│       └── contractValidator.ts
+│       └── contractValidator.ts    # API schema validation utilities
 │
-├── playwright.config.ts
-├── package.json
+├── playwright.config.ts             # Playwright configuration
+├── package.json                     # Project dependencies
 ├── package-lock.json
 │
 └── .github/
-└── workflows/
-└── playwright.yml
+    └── workflows/
+        └── playwright.yml           # CI/CD pipeline with GitHub Actions
+```
 # Test Coverage
 
 Current automated coverage:
